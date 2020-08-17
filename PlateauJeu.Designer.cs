@@ -759,6 +759,9 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.DragDrop += new System.Windows.Forms.DragEventHandler(this.button1_DragDrop);
+            this.button1.DragEnter += new System.Windows.Forms.DragEventHandler(this.button1_DragEnter);
+            this.button1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button1_MouseDown);
             // 
             // PlateauJeu
             // 
@@ -770,7 +773,7 @@
             this.Controls.Add(this.sideBar);
             this.Name = "PlateauJeu";
             this.Text = "BookWorm";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PlateauJeu_FormClosed);
+            this.Load += new System.EventHandler(this.PlateauJeu_Load);
             this.sideBar.ResumeLayout(false);
             this.bonusWordLabel.ResumeLayout(false);
             this.bonusWordLabel.PerformLayout();
