@@ -24,11 +24,6 @@ namespace BookWorm
 
         private void buttonLancerPartie_Click(object sender, EventArgs e)
         {
-            //Form plateauJeu = new PlateauJeu();
-
-            //this.Hide();
-
-            //plateauJeu.ShowDialog(this);
 
             Form nouveauPlateauJeu = new PlateauJeu();
             nouveauPlateauJeu.Location = this.Location;
@@ -36,6 +31,11 @@ namespace BookWorm
             nouveauPlateauJeu.FormClosing += delegate { this.Show(); };
             nouveauPlateauJeu.Show();
             this.Hide();
+
+            nouveauPlateauJeu.FormClosing += delegate {
+                this.Location = nouveauPlateauJeu.Location;
+                this.Show();
+            };
 
         }
 
