@@ -22,27 +22,26 @@ namespace BookWorm
             
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonLancerPartie_Click(object sender, EventArgs e)
         {
+            //Form plateauJeu = new PlateauJeu();
+
+            //this.Hide();
+
+            //plateauJeu.ShowDialog(this);
+
+            Form nouveauPlateauJeu = new PlateauJeu();
+            nouveauPlateauJeu.Location = this.Location;
+            nouveauPlateauJeu.StartPosition = FormStartPosition.Manual;
+            nouveauPlateauJeu.FormClosing += delegate { this.Show(); };
+            nouveauPlateauJeu.Show();
+            this.Hide();
 
         }
 
         private void Quitter_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Application.Exit();
-        }
-
-        private void buttonLancerPartie_Click(object sender, EventArgs e)
-        {
-            Form plateauJeu = new PlateauJeu
-            {
-                MdiParent = this,
-                Visible = true
-            };
-
-            panel1.Visible = false;
-
-
         }
     }
 }

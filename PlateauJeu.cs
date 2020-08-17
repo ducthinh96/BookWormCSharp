@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -15,6 +16,11 @@ namespace BookWorm
         public PlateauJeu()
         {
             InitializeComponent();
+        }
+
+        private void PlateauJeu_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //MenuPrincipal.Show();
         }
     }
 }
