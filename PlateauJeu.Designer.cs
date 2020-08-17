@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlateauJeu));
             this.sideBar = new System.Windows.Forms.Panel();
             this.button53 = new System.Windows.Forms.Button();
-            this.bonusWordLabel = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.bonusWordPanel = new System.Windows.Forms.Panel();
+            this.bonusWordLabel = new System.Windows.Forms.Label();
             this.mixWordBoardButton = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.currentWordLabel = new System.Windows.Forms.Label();
@@ -95,7 +95,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.sideBar.SuspendLayout();
-            this.bonusWordLabel.SuspendLayout();
+            this.bonusWordPanel.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -106,7 +106,7 @@
             // 
             this.sideBar.BackColor = System.Drawing.Color.Tan;
             this.sideBar.Controls.Add(this.button53);
-            this.sideBar.Controls.Add(this.bonusWordLabel);
+            this.sideBar.Controls.Add(this.bonusWordPanel);
             this.sideBar.Controls.Add(this.mixWordBoardButton);
             this.sideBar.Controls.Add(this.panel3);
             this.sideBar.Controls.Add(this.submitButton);
@@ -127,26 +127,26 @@
             this.button53.Text = "Revenir au menu";
             this.button53.UseVisualStyleBackColor = true;
             // 
+            // bonusWordPanel
+            // 
+            this.bonusWordPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.bonusWordPanel.Controls.Add(this.bonusWordLabel);
+            this.bonusWordPanel.Location = new System.Drawing.Point(4, 643);
+            this.bonusWordPanel.Name = "bonusWordPanel";
+            this.bonusWordPanel.Size = new System.Drawing.Size(343, 58);
+            this.bonusWordPanel.TabIndex = 4;
+            // 
             // bonusWordLabel
             // 
-            this.bonusWordLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.bonusWordLabel.Controls.Add(this.label1);
-            this.bonusWordLabel.Location = new System.Drawing.Point(4, 643);
+            this.bonusWordLabel.AutoSize = true;
+            this.bonusWordLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bonusWordLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.bonusWordLabel.Location = new System.Drawing.Point(77, 5);
             this.bonusWordLabel.Name = "bonusWordLabel";
-            this.bonusWordLabel.Size = new System.Drawing.Size(343, 58);
-            this.bonusWordLabel.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(77, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(175, 46);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "DESSIN";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.bonusWordLabel.Size = new System.Drawing.Size(175, 46);
+            this.bonusWordLabel.TabIndex = 0;
+            this.bonusWordLabel.Text = "DESSIN";
+            this.bonusWordLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // mixWordBoardButton
             // 
@@ -175,8 +175,9 @@
             this.currentWordLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.currentWordLabel.Location = new System.Drawing.Point(98, 6);
             this.currentWordLabel.Name = "currentWordLabel";
-            this.currentWordLabel.Size = new System.Drawing.Size(0, 46);
+            this.currentWordLabel.Size = new System.Drawing.Size(134, 46);
             this.currentWordLabel.TabIndex = 0;
+            this.currentWordLabel.Text = "SANS";
             this.currentWordLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // submitButton
@@ -773,8 +774,8 @@
             this.Text = "BookWorm";
             this.Load += new System.EventHandler(this.PlateauJeu_Load);
             this.sideBar.ResumeLayout(false);
-            this.bonusWordLabel.ResumeLayout(false);
-            this.bonusWordLabel.PerformLayout();
+            this.bonusWordPanel.ResumeLayout(false);
+            this.bonusWordPanel.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -851,7 +852,7 @@
         private System.Windows.Forms.Label currentWordLabel;
         private System.Windows.Forms.Button mixWordBoardButton;
         private System.Windows.Forms.Button button53;
-        private System.Windows.Forms.Panel bonusWordLabel;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel bonusWordPanel;
+        private System.Windows.Forms.Label bonusWordLabel;
     }
 }
