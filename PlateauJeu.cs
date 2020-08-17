@@ -48,9 +48,10 @@ namespace BookWorm
 
             if (index_btn_depart != plateauLettres.Controls.IndexOf(btn))
             {
+                currentWordLabel.Text = currentWordLabel.Text + (string)btn.Tag;
+
                 MessageBox.Show("Index bouton départ : " + index_btn_depart + "\n Index bouton arrivée : " + plateauLettres.Controls.IndexOf(btn).ToString());
             }
-            
         }
 
         private void button1_DragEnter(object sender, DragEventArgs e)
