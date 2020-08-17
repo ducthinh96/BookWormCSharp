@@ -158,6 +158,7 @@
             this.mixWordBoardButton.Size = new System.Drawing.Size(343, 374);
             this.mixWordBoardButton.TabIndex = 4;
             this.mixWordBoardButton.UseVisualStyleBackColor = true;
+            this.mixWordBoardButton.Click += new System.EventHandler(this.mixWordBoardButton_Click);
             // 
             // panel3
             // 
