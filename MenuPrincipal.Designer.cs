@@ -29,109 +29,103 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuPrincipal));
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.Quitter = new System.Windows.Forms.Button();
-            this.Settings = new System.Windows.Forms.Button();
-            this.ScoreBoard = new System.Windows.Forms.Button();
-            this.buttonLancerPartie = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // panel1
+            // button1
             // 
-            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Controls.Add(this.Quitter);
-            this.panel1.Controls.Add(this.Settings);
-            this.panel1.Controls.Add(this.ScoreBoard);
-            this.panel1.Controls.Add(this.buttonLancerPartie);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1024, 768);
-            this.panel1.TabIndex = 0;
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(513, 56);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(513, 156);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "LANCER PARTIE";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.buttonLancerPartie_Click);
             // 
-            // Quitter
+            // button2
             // 
-            this.Quitter.BackColor = System.Drawing.Color.Transparent;
-            this.Quitter.FlatAppearance.BorderSize = 0;
-            this.Quitter.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.Quitter.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.Quitter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Quitter.ForeColor = System.Drawing.Color.Black;
-            this.Quitter.Location = new System.Drawing.Point(430, 551);
-            this.Quitter.Name = "Quitter";
-            this.Quitter.Size = new System.Drawing.Size(592, 182);
-            this.Quitter.TabIndex = 3;
-            this.Quitter.Text = "EXIT";
-            this.Quitter.UseVisualStyleBackColor = false;
-            this.Quitter.Click += new System.EventHandler(this.Quitter_Click);
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(447, 211);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(579, 149);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "SCORE BOARD";
+            this.button2.UseVisualStyleBackColor = false;
             // 
-            // Settings
+            // button3
             // 
-            this.Settings.BackColor = System.Drawing.Color.Transparent;
-            this.Settings.FlatAppearance.BorderSize = 0;
-            this.Settings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.Settings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.Settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Settings.Location = new System.Drawing.Point(463, 369);
-            this.Settings.Name = "Settings";
-            this.Settings.Size = new System.Drawing.Size(559, 181);
-            this.Settings.TabIndex = 2;
-            this.Settings.Text = "Settings";
-            this.Settings.UseVisualStyleBackColor = false;
+            this.button3.BackColor = System.Drawing.Color.Transparent;
+            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(464, 358);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(562, 184);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "OPTIONS";
+            this.button3.UseVisualStyleBackColor = false;
             // 
-            // ScoreBoard
+            // button4
             // 
-            this.ScoreBoard.BackColor = System.Drawing.Color.Transparent;
-            this.ScoreBoard.FlatAppearance.BorderSize = 0;
-            this.ScoreBoard.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.ScoreBoard.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.ScoreBoard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ScoreBoard.Location = new System.Drawing.Point(448, 218);
-            this.ScoreBoard.Name = "ScoreBoard";
-            this.ScoreBoard.Size = new System.Drawing.Size(575, 147);
-            this.ScoreBoard.TabIndex = 1;
-            this.ScoreBoard.Text = "ScoreBoard";
-            this.ScoreBoard.UseVisualStyleBackColor = false;
-            // 
-            // buttonLancerPartie
-            // 
-            this.buttonLancerPartie.BackColor = System.Drawing.Color.Transparent;
-            this.buttonLancerPartie.FlatAppearance.BorderSize = 0;
-            this.buttonLancerPartie.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.buttonLancerPartie.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.buttonLancerPartie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonLancerPartie.Location = new System.Drawing.Point(513, 57);
-            this.buttonLancerPartie.Name = "buttonLancerPartie";
-            this.buttonLancerPartie.Size = new System.Drawing.Size(510, 159);
-            this.buttonLancerPartie.TabIndex = 0;
-            this.buttonLancerPartie.Text = "buttonLancerPartie";
-            this.buttonLancerPartie.UseVisualStyleBackColor = false;
-            this.buttonLancerPartie.Click += new System.EventHandler(this.buttonLancerPartie_Click);
+            this.button4.BackColor = System.Drawing.Color.Transparent;
+            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Location = new System.Drawing.Point(429, 540);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(597, 184);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "QUITTER";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.Quitter_Click);
             // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.WindowText;
+            this.BackColor = System.Drawing.SystemColors.Info;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1026, 761);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.IsMdiContainer = true;
             this.Name = "MenuPrincipal";
             this.Text = "BookWorm Menu";
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button Quitter;
-        private System.Windows.Forms.Button Settings;
-        private System.Windows.Forms.Button ScoreBoard;
-        private System.Windows.Forms.Button buttonLancerPartie;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
 
