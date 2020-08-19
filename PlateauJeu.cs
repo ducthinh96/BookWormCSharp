@@ -16,6 +16,7 @@ namespace BookWorm
         string motBonus;
         // Récupérer le dictionnaire des mots
         string[] wordList = Util.ReadTextFile(Constant.MAIN_WORD_LIST_FILE_PATH);
+        int[] topRowButtonsIndexListe = { 0, 7, 15, 22, 30, 37, 45};
 
         public PlateauJeu()
         {
@@ -147,6 +148,36 @@ namespace BookWorm
             if(isMatch)
             {
                 MessageBox.Show("Ok", "OK");
+                ReplaceCharacters();
+            }
+        }
+
+        private void ReplaceCharacters()
+        {
+            Random random = new Random();
+
+            foreach (Button btn in plateauLettres.Controls.OfType<Button>())
+            {
+                if (btn.Tag.ToString() == Constant.SELECTED)
+                {
+                    bool topRowReached = false;
+                    int i = plateauLettres.Controls.IndexOf(btn);
+
+                    while(!topRowReached)
+                    {
+                        if(topRowButtonsIndexListe.Contains(i))
+                        {
+                            plateauLettres.Controls[i].Text = Constant.ALPHABET_SANS_ACCENT.ToCharArray()[random.Next(0, Constant.ALPHABET_SANS_ACCENT.Length)].ToString();
+                            topRowReached = true;
+                        }
+                        else
+                        {
+                            plateauLettres.Controls[i].Text = plateauLettres.Controls[i + 1].Text;
+                        }
+
+                        i++;
+                    }
+                }
             }
         }
 
