@@ -126,6 +126,7 @@
             this.button53.TabIndex = 5;
             this.button53.Text = "Revenir au menu";
             this.button53.UseVisualStyleBackColor = true;
+            this.button53.Click += new System.EventHandler(this.RevenirAuMenu);
             // 
             // bonusWordPanel
             // 

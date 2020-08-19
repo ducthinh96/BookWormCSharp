@@ -12,5 +12,7 @@ namespace BookWorm
         public static string MAIN_WORD_LIST_FILE_PATH => "Data/Main_Word_List.txt";
         public static string ALPHABET_SANS_ACCENT => "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         public static string ALPHABET_AVEC_ACCENT => "AÀÂÆBCÇDEÉÈÊËFGHIÎÏJKLMNOÔŒPQRSTUÙÛÜVWXYŸZ";
+        public static string NOT_SELECTED => "NOT_SELECTED";
+        public static string SELECTED => "SELECTED";
     }
 }
