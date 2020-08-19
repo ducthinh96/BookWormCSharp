@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -50,13 +51,64 @@ namespace BookWorm
             }
         }
 
+        struct nbOccurLettres
+        {
+            // Structure de donnée pour garder le compte du nombre d'occurence actuel de chaque lettre dans le tableau afin de s'arranger pour sortir plus au moins les lettres selon leurs fréquences d'utilisationrs dans la langue française
+            public char lettre;
+            public int nbOccurMax;
+            public int nbOccurPlateau;
+        }
+
         private void GenererNouveauPlateau()
         {
+            string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            int[] maxOccurLettres = {5, 1, 2, 2, 9, 1, 1, 1, 4, 1, 1, 3, 2, 4, 3, 2, 1, 4, 5, 4, 4, 1, 1, 1, 1, 1};
+
+            nbOccurLettres[] structTest = new nbOccurLettres[26];
+
+            
+            for (int i = 0; i < 26; i++)
+            {
+                structTest[i].lettre = alphabet[i];
+                structTest[i].nbOccurMax = maxOccurLettres[i];
+                structTest[i].nbOccurPlateau = 0;
+            }
+
             // Générer un plateau de manière aléatoire
             Random random = new Random();
+
+            string tempLettre = " ";
+
             foreach (Button caseLettre in plateauLettres.Controls.OfType<Button>())
             {
-                caseLettre.Text = Constant.ALPHABET_SANS_ACCENT.ToCharArray()[random.Next(0, Constant.ALPHABET_SANS_ACCENT.Length)].ToString();
+                int randomConst = 0;
+                bool relancerRandom = true;
+                
+
+                // boucle pour lancer le randomize tant que la lettre sur laquelle on tombe a déjà dépassé son quota d'apparition dans le plateau
+                while (relancerRandom)
+                {
+                    // random pour obtenir un int qui va correspondre à une lettre de l'alphabet
+                    randomConst = random.Next(0, Constant.ALPHABET_SANS_ACCENT.Length);
+
+                    // test si la lettre tirée a déjà excédé son quota d'apparition
+                    if (structTest[randomConst].nbOccurPlateau < structTest[randomConst].nbOccurMax)
+                    { 
+                        // si elle ne l'a pas excédé, on incrémente le compteur d'apparition de cette lettre et on sort de la boucle
+                        structTest[randomConst].nbOccurPlateau++;
+
+                        relancerRandom = false;
+
+                    }
+
+                }
+
+                // on récupère la lettre qui correspond à ce numéro dans l'alphabet
+                tempLettre = Constant.ALPHABET_SANS_ACCENT.ToCharArray()[randomConst].ToString();
+
+                // on remplace le texte du bouton par la lettre
+                caseLettre.Text = tempLettre;
+
                 caseLettre.Font = new Font(Font.FontFamily.Name, 20);
             }
         }
@@ -73,6 +125,8 @@ namespace BookWorm
 
             letter = btn.Text;
             index_btn_depart = plateauLettres.Controls.IndexOf(btn);
+
+            // on stock la position du bouton de départ et on y rajoute 44 pour l'abcisse et l'ordonnée pour recentrer le marqueur de position dans l'axe
             posX_btnDepart = btn.Left + 44;
             posY_btnDepart = btn.Top + 44;
 
