@@ -53,6 +53,8 @@ namespace BookWorm
 
         string letter;
         int index_btn_depart;
+        int posX_btnDepart;
+        int posY_btnDepart;
 
         private void button1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -60,6 +62,8 @@ namespace BookWorm
 
             letter = btn.Text;
             index_btn_depart = plateauLettres.Controls.IndexOf(btn);
+            posX_btnDepart = btn.Left + 44;
+            posY_btnDepart = btn.Top + 44;
 
             btn.DoDragDrop("bidon", DragDropEffects.Link);
         }
@@ -68,11 +72,21 @@ namespace BookWorm
         {
             Button btn = (Button)sender;
 
+            int posX_btnArrivee = btn.Left + 44;
+            int posY_btnArrivee = btn.Top + 44;
+
             if (index_btn_depart != plateauLettres.Controls.IndexOf(btn))
             {
                 currentWordLabel.Text = currentWordLabel.Text + (string)btn.Tag;
 
-                MessageBox.Show("Index bouton départ : " + index_btn_depart + "\n Index bouton arrivée : " + plateauLettres.Controls.IndexOf(btn).ToString());
+                //MessageBox.Show("Index bouton départ : " + index_btn_depart + "\n Index bouton arrivée : " + plateauLettres.Controls.IndexOf(btn).ToString());
+                
+                if (posX_btnArrivee - posX_btnDepart <= 100 && posX_btnArrivee - posX_btnDepart >= -100 && posY_btnArrivee - posY_btnDepart <= 100 && posY_btnArrivee - posY_btnDepart >= -100)
+                {
+                    MessageBox.Show(posX_btnDepart + "\n" + posY_btnDepart);
+                    MessageBox.Show(posX_btnArrivee + "\n" + posY_btnArrivee);
+                }
+                
             }
         }
 
