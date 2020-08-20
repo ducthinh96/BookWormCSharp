@@ -21,7 +21,7 @@ namespace BookWorm
         int[] topRowButtonsIndexListe = { 6, 14, 21, 29, 36, 44, 51};
         int[] bottomRowButtonsIndexListe = { 45, 37, 30, 22, 15, 7, 0 };
         public static ArrayList caseLettreEnFeu = new ArrayList();
-        System.Timers.Timer chrono;
+        System.Timers.Timer chrono = new System.Timers.Timer();
 
         public PlateauJeu()
         {
@@ -273,7 +273,6 @@ namespace BookWorm
             plateauLettres.Controls[randConst].BackColor = Color.Red;
 
             // Init du chrono pour faire descendre les cases en feu toutes les 2000 milliscondes
-            chrono = new System.Timers.Timer();
             chrono.Interval = 2000;
             chrono.Elapsed += OnTimedEvent;
             chrono.AutoReset = true;
@@ -312,9 +311,9 @@ namespace BookWorm
 
         private void RevenirAuMenu(object sender, EventArgs e)
         {
-            //if (chrono.Enabled = true)
+            if (chrono.Enabled = true)
             {
-                //chrono.Enabled = false;
+                chrono.Enabled = false;
             }
             
 
