@@ -332,12 +332,13 @@
             // 
             // button50
             // 
+            this.button50.BackColor = System.Drawing.Color.Gainsboro;
             this.button50.Location = new System.Drawing.Point(573, 240);
             this.button50.Name = "button50";
             this.button50.Size = new System.Drawing.Size(88, 88);
             this.button50.TabIndex = 47;
             this.button50.Text = "button50";
-            this.button50.UseVisualStyleBackColor = true;
+            this.button50.UseVisualStyleBackColor = false;
             // 
             // button51
             // 
@@ -756,6 +757,10 @@
             // 
             // button1
             // 
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.button1.Location = new System.Drawing.Point(9, 52);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(88, 88);
