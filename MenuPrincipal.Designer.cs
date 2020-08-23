@@ -124,6 +124,7 @@
             this.IsMdiContainer = true;
             this.Name = "MenuPrincipal";
             this.Text = "BookWorm Menu";
+            this.Load += new System.EventHandler(this.MenuPrincipal_Load);
             this.ResumeLayout(false);
 
         }
