@@ -311,7 +311,7 @@ namespace BookWorm
 
         private void RevenirAuMenu(object sender, EventArgs e)
         {
-            if (chrono.Enabled = true)
+            if (chrono.Enabled == true)
             {
                 chrono.Enabled = false;
             }
