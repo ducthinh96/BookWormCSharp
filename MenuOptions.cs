@@ -26,5 +26,10 @@ namespace BookWorm
         {
             volumeTrackBar.Value = Convert.ToInt32(Util.backgroundMusic.Volume * 100);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
