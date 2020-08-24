@@ -40,6 +40,14 @@ namespace BookWorm
             motBonus = motBonusListe[random.Next(0,motBonusListe.Length)];
             bonusWordLabel.Text = motBonus;
 
+            // Initialisation du dictionnaire qui contient la valeur de chaque lettre
+            int[] arrayValeurLettres = { 1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 10, 1, 2, 1, 1, 3, 8, 1, 1, 1, 1, 4, 10, 10, 10, 10 };
+
+            for (int i = 0; i < 26; i++)
+            {
+                valeurLettres.Add(alphabet[i], arrayValeurLettres[i]);
+            }
+
             // Générer un nouveau plateau
             GenererNouveauPlateau();
 
@@ -103,11 +111,13 @@ namespace BookWorm
             return tempLettre;
         }
 
+        Dictionary<char, int> valeurLettres = new Dictionary<char, int>();
+
         private void GenererNouveauPlateau()
         {
             // array qui contient les quotas d'apparition de chaque lettre
-            int[] maxOccurLettres = {5, 1, 2, 2, 9, 1, 1, 1, 4, 1, 1, 3, 2, 4, 3, 2, 1, 4, 5, 4, 4, 1, 1, 1, 1, 1};
-            
+            int[] maxOccurLettres = { 6, 1, 2, 2, 11, 1, 1, 1, 5, 1, 1, 3, 2, 4, 3, 2, 1, 4, 5, 4, 4, 1, 1, 1, 1, 1 };
+
             // Initialisation de la variable structurée
             for (int i = 0; i < 26; i++)
             {
@@ -133,6 +143,7 @@ namespace BookWorm
         int index_btn_depart;
         int posX_btnDepart;
         int posY_btnDepart;
+        int scoreTotalPartie = 0;
         MouseEventArgs evnt;
 
         private void button1_MouseDown(object sender, MouseEventArgs e)
@@ -214,10 +225,42 @@ namespace BookWorm
             mot = mot.ToLower();
             var isMatch = Array.Exists(wordList, s => s.Equals(mot));
 
-            if(isMatch)
+            if (isMatch)
             {
+                // conversion du mot validé en majuscules pour pouvoir être comparé au dictionnaire
+                string motMajuscules = mot.ToUpper();
+
+                // on recherche la valeur de chaque lettres du mot trouvé
+                foreach (char letter in motMajuscules)
+                {
+                    // on décrémente le nombre d'occurence actuelle de cette lettre
+                    decrementerNbOccurLettre(letter);
+
+                    // on rajoute les points de chaque lettre au score total de la partie
+                    scoreTotalPartie += valeurLettres[letter];
+                }
+
                 MessageBox.Show("Ok", "OK");
+                scoreLabel.Text = scoreTotalPartie.ToString();
                 ReplaceCharacters();
+
+            }
+        }
+
+        private void decrementerNbOccurLettre(char lettre)
+        {
+            bool match = false;
+            int i = 0;
+
+            while (!match && i < 26)
+            {
+                if (lettre == structTest[i].lettre)
+                {
+                    structTest[i].nbOccurPlateau--;
+                    match = true;
+                }
+
+                i++;
             }
         }
 

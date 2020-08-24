@@ -208,9 +208,9 @@
             this.levelLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.levelLabel.Location = new System.Drawing.Point(11, 5);
             this.levelLabel.Name = "levelLabel";
-            this.levelLabel.Size = new System.Drawing.Size(187, 48);
+            this.levelLabel.Size = new System.Drawing.Size(166, 48);
             this.levelLabel.TabIndex = 0;
-            this.levelLabel.Text = "Niveau 12";
+            this.levelLabel.Text = "Niveau 1";
             this.levelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
@@ -229,9 +229,9 @@
             this.scoreLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.scoreLabel.Location = new System.Drawing.Point(11, 2);
             this.scoreLabel.Name = "scoreLabel";
-            this.scoreLabel.Size = new System.Drawing.Size(259, 50);
+            this.scoreLabel.Size = new System.Drawing.Size(72, 50);
             this.scoreLabel.TabIndex = 0;
-            this.scoreLabel.Text = "10000";
+            this.scoreLabel.Text = "0";
             this.scoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // plateauLettres
