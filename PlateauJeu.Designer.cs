@@ -777,6 +777,9 @@
             this.ClientSize = new System.Drawing.Size(1026, 761);
             this.Controls.Add(this.plateauLettres);
             this.Controls.Add(this.sideBar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "PlateauJeu";
             this.Text = "BookWorm";
             this.Load += new System.EventHandler(this.PlateauJeu_Load);
