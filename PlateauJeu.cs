@@ -1,27 +1,28 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Timers;
 
 namespace BookWorm
 {
     public partial class PlateauJeu : Form
     {
+        // Le mot bonus
         string motBonus;
         // Récupérer le dictionnaire des mots
         string[] wordList = Util.ReadTextFile(Constant.MAIN_WORD_LIST_FILE_PATH);
+        // Index des cases du premier rang (au plus haut)
         int[] topRowButtonsIndexListe = { 6, 14, 21, 29, 36, 44, 51};
+        // Index des cases du premier rang (au plus bas)
         int[] bottomRowButtonsIndexListe = { 45, 37, 30, 22, 15, 7, 0 };
-        public static ArrayList caseLettreEnFeu = new ArrayList();
-        System.Timers.Timer chrono = new System.Timers.Timer();
+        // La liste qui contient l'index des cases en feu
+        List<int> caseLettreEnFeuListe = new List<int>();
+        // Init du chrono pour faire descendre les cases en feu toutes les 2000 milliscondes
+        Timer chrono = new Timer
+        {
+            Interval = 2000
+        };
 
         public PlateauJeu()
         {
@@ -54,6 +55,9 @@ namespace BookWorm
                 btn.BackColor = SystemColors.ButtonFace; // Default color
                 btn.Tag = Constant.NOT_SELECTED; // Etat = non sélectionné
             }
+
+            // Brancher l'événement Tick du chrono à la méthode OnTickEvent
+            chrono.Tick += OnTickEvent;
         }
 
         struct nbOccurLettres
@@ -255,50 +259,68 @@ namespace BookWorm
             GenererNouveauPlateau();
 
             bool nouvelleCaseEnFeu = true;
-            int randConst = 0;
+            int caseEnFeuIndex = 0;
 
             while (nouvelleCaseEnFeu)
             {
                 // tirage au sort d'une case qui va être en feu
-                randConst = random.Next(0, Constant.ALPHABET_SANS_ACCENT.Length);
+                int randConst = random.Next(0, topRowButtonsIndexListe.Length-1);
+                caseEnFeuIndex = topRowButtonsIndexListe[randConst];
 
-                if (plateauLettres.Controls[randConst].BackColor != Color.Red)
+                if (plateauLettres.Controls[caseEnFeuIndex].BackColor != Color.Red)
                 {
                     nouvelleCaseEnFeu = false;
                 }
             }
 
-            caseLettreEnFeu.Add(randConst);
+            caseLettreEnFeuListe.Add(caseEnFeuIndex);
 
-            plateauLettres.Controls[randConst].BackColor = Color.Red;
+            plateauLettres.Controls[caseEnFeuIndex].BackColor = Color.Red;
 
-            // Init du chrono pour faire descendre les cases en feu toutes les 2000 milliscondes
-            chrono.Interval = 2000;
-            chrono.Elapsed += OnTimedEvent;
-            chrono.AutoReset = true;
-            chrono.Enabled = true;
+            if (chrono.Enabled == false)
+            {
+                // Activer le chrono si il n'était pas activé
+                chrono.Enabled = true;
+            }
         }
 
-        private void OnTimedEvent(Object source, System.Timers.ElapsedEventArgs e)
+        private void OnTickEvent(Object source, EventArgs e)
         {
             // parcourir l'array qui contient l'index de toutes les cases en feu
-            for (int i = 0; i < caseLettreEnFeu.Count; i++)
+            for (int i = 0; i < caseLettreEnFeuListe.Count; i++)
             {
-                // verification qu'on a pas atteint la première case pour éviter d'atteindre l'index -1
-                if ((int)caseLettreEnFeu[i] - 1 > 0)
+                // on remet la couleur du bouton par défaut
+                plateauLettres.Controls[caseLettreEnFeuListe[i]].BackColor = Color.WhiteSmoke;
+
+                // faire descenre les cases au-dessus
+                bool topRowReached = false;
+                int j = caseLettreEnFeuListe[i] - 1;
+
+                while (!topRowReached)
                 {
-                    // on remet la couleur du bouton par défaut
-                    plateauLettres.Controls[(int)caseLettreEnFeu[i]].BackColor = Color.WhiteSmoke;
+                    if (topRowButtonsIndexListe.Contains(j))
+                    {
+                        // générer une nouvelle lettre
+                        plateauLettres.Controls[j].Text = GenererNouvelleLettre();
 
-                    // on décrémente de 1 l'index des cases en feu contenues dans l'array "caseLettreEnFeu"
-                    caseLettreEnFeu[i] = (int)caseLettreEnFeu[i] - 1;
+                        topRowReached = true;
+                    }
+                    else
+                    {
+                        plateauLettres.Controls[j].Text = plateauLettres.Controls[j + 1].Text;
+                    }
 
-                    // on colorie en rouge le bouton d'index -1 (on fait descendre la case en feu)
-                    plateauLettres.Controls[(int)caseLettreEnFeu[i]].BackColor = Color.Red;
+                    j++;
                 }
-                
+
+                // on décrémente de 1 l'index des cases en feu contenues dans l'array "caseLettreEnFeuListe"
+                caseLettreEnFeuListe[i] = caseLettreEnFeuListe[i] - 1;
+
+                // on colorie en rouge le bouton d'index -1 (on fait descendre la case en feu)
+                plateauLettres.Controls[caseLettreEnFeuListe[i]].BackColor = Color.Red;
+
                 // Vérification si une case en feu qui descend atteint le bas du tableau (défaite)
-                if (bottomRowButtonsIndexListe.Contains((int)caseLettreEnFeu[i]))
+                if (bottomRowButtonsIndexListe.Contains(caseLettreEnFeuListe[i]))
                 {
                     // désactivation du chronomètre car fin de la partie
                     chrono.Enabled = false;
