@@ -18,15 +18,18 @@ namespace BookWorm
         int[] bottomRowButtonsIndexListe = { 45, 37, 30, 22, 15, 7, 0 };
         // La liste qui contient l'index des cases en feu
         List<int> caseLettreEnFeuListe = new List<int>();
-        // Init du chrono pour faire descendre les cases en feu toutes les 2000 milliscondes
+        // Init du chrono pour faire descendre les cases en feu toutes les 6000 milliscondes
         Timer chrono = new Timer
         {
-            Interval = 2000
+            Interval = 6000
         };
         int index_btn_depart;
         int posX_btnDepart;
         int posY_btnDepart;
         int scoreTotalPartie = 0;
+        int niveau = 1;
+        // barème pour le prochain niveau
+        int pointParNiveau = 50;
         MouseEventArgs evnt;
         struct nbOccurLettres
         {
@@ -54,6 +57,9 @@ namespace BookWorm
             Random random = new Random();
             motBonus = motBonusListe[random.Next(0,motBonusListe.Length)];
             bonusWordLabel.Text = motBonus;
+
+            // Initialisation du label qui contient le niveau du joueur
+            levelLabel.Text = "Niveau " + niveau.ToString();
 
             // Initialisation du dictionnaire qui contient la valeur de chaque lettre
             int[] arrayValeurLettres = { 1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 10, 1, 2, 1, 1, 3, 8, 1, 1, 1, 1, 4, 10, 10, 10, 10 };
@@ -241,7 +247,24 @@ namespace BookWorm
                     scoreTotalPartie += valeurLettres[letter];
                 }
 
-                MessageBox.Show("Ok", "OK");
+                // vérification si après le dernier mot trouvé, le score dépasse le prochain barème de niveau
+                if (scoreTotalPartie >= pointParNiveau)
+                {
+                    // incrémentation du niveau
+                    niveau++;
+                    // augmentation du barème pour le prochain niveau de 100
+                    pointParNiveau += 100;
+                    // affichage du nouveau niveau du joueur
+                    levelLabel.Text = "Niveau " + niveau.ToString();
+                    // réduction du temps entre deux descente de case en feu dans une limite de 1 seconde au minimum
+                    if (chrono.Interval > 1000)
+                    {
+                        chrono.Interval -= 500;
+                    }
+                    
+                }
+
+                //MessageBox.Show("Ok", "OK");
                 scoreLabel.Text = scoreTotalPartie.ToString();
                 ReplaceCharacters();
             }
@@ -384,6 +407,5 @@ namespace BookWorm
 
             this.Close();
         }
-
     }
 }
