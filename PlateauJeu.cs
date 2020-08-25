@@ -23,6 +23,21 @@ namespace BookWorm
         {
             Interval = 2000
         };
+        int index_btn_depart;
+        int posX_btnDepart;
+        int posY_btnDepart;
+        int scoreTotalPartie = 0;
+        MouseEventArgs evnt;
+        struct nbOccurLettres
+        {
+            // Structure de donnée pour garder le compte du nombre d'occurence actuel de chaque lettre dans le tableau afin de s'arranger pour sortir plus au moins les lettres selon leurs fréquences d'utilisationrs dans la langue française
+            public char lettre;
+            public int nbOccurMax;
+            public int nbOccurPlateau;
+        }
+        nbOccurLettres[] structTest = new nbOccurLettres[26];
+        string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        Random random = new Random();
 
         public PlateauJeu()
         {
@@ -67,18 +82,6 @@ namespace BookWorm
             // Brancher l'événement Tick du chrono à la méthode OnTickEvent
             chrono.Tick += OnTickEvent;
         }
-
-        struct nbOccurLettres
-        {
-            // Structure de donnée pour garder le compte du nombre d'occurence actuel de chaque lettre dans le tableau afin de s'arranger pour sortir plus au moins les lettres selon leurs fréquences d'utilisationrs dans la langue française
-            public char lettre;
-            public int nbOccurMax;
-            public int nbOccurPlateau;
-        }
-
-        nbOccurLettres[] structTest = new nbOccurLettres[26];
-        string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        Random random = new Random();
 
         private string GenererNouvelleLettre()
         {
@@ -139,18 +142,13 @@ namespace BookWorm
             
         }
 
-        string letter;
-        int index_btn_depart;
-        int posX_btnDepart;
-        int posY_btnDepart;
-        int scoreTotalPartie = 0;
-        MouseEventArgs evnt;
-
         private void button1_MouseDown(object sender, MouseEventArgs e)
         {
             Button btn = (Button)sender;
 
-            letter = btn.Text;
+            // Jouer l'effet sonore
+            Util.SelectLetterSoundEffect();
+
             index_btn_depart = plateauLettres.Controls.IndexOf(btn);
 
             // on stock la position du bouton de départ et on y rajoute 44 pour l'abcisse et l'ordonnée pour recentrer le marqueur de position dans l'axe
@@ -227,6 +225,9 @@ namespace BookWorm
 
             if (isMatch)
             {
+                // Jouer l'effet sonore
+                Util.MatchWordSoundEffect();
+
                 // conversion du mot validé en majuscules pour pouvoir être comparé au dictionnaire
                 string motMajuscules = mot.ToUpper();
 
@@ -243,7 +244,6 @@ namespace BookWorm
                 MessageBox.Show("Ok", "OK");
                 scoreLabel.Text = scoreTotalPartie.ToString();
                 ReplaceCharacters();
-
             }
         }
 
