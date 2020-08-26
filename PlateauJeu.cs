@@ -21,7 +21,7 @@ namespace BookWorm
         // Init du chrono pour faire descendre les cases en feu toutes les 6000 milliscondes
         Timer chrono = new Timer
         {
-            Interval = 6000
+            Interval = 10000
         };
         int index_btn_depart;
         int posX_btnDepart;
@@ -51,6 +51,9 @@ namespace BookWorm
         {
             // Init le mot courant
             currentWordLabel.Text = "";
+
+            // Init le score du mot courant
+            scoreOfWordLabel.Text = "";
 
             // Init le mot bonus :
             var motBonusListe = Util.ReadTextFile(Constant.MOT_BONUS_FILE_PATH);
@@ -87,6 +90,27 @@ namespace BookWorm
 
             // Brancher l'événement Tick du chrono à la méthode OnTickEvent
             chrono.Tick += OnTickEvent;
+        }
+
+        private void ResetJeu()
+        {
+            // Init le score dans la variable globale
+            Util.scoreGlobal = -1;
+
+            // Init le mot courant
+            currentWordLabel.Text = "";
+
+            // Init le score du mot courant
+            scoreOfWordLabel.Text = "";
+
+            // Init le mot bonus :
+            var motBonusListe = Util.ReadTextFile(Constant.MOT_BONUS_FILE_PATH);
+            Random random = new Random();
+            motBonus = motBonusListe[random.Next(0, motBonusListe.Length)];
+            bonusWordLabel.Text = motBonus;
+
+            // Initialisation du label qui contient le niveau du joueur
+            levelLabel.Text = "Niveau " + niveau.ToString();
         }
 
         private string GenererNouvelleLettre()
@@ -186,10 +210,14 @@ namespace BookWorm
 
             // Réinitialiser le plateau après que le souris est relâché
             currentWordLabel.Text = ""; // Réinit le mot courant
+            scoreOfWordLabel.Text = ""; // Réinit le score du mot courant
             foreach (Button btn in plateauLettres.Controls.OfType<Button>())
             {
                 // Réinit l'état des boutons
-                btn.BackColor = SystemColors.ButtonFace; // Default color
+                if (btn.BackColor != Color.Red)
+                {
+                    btn.BackColor = SystemColors.ButtonFace; // Default color
+                }
                 btn.Tag = Constant.NOT_SELECTED; // Etat = non sélectionné
             }
         }
@@ -215,8 +243,19 @@ namespace BookWorm
                     currentWordLabel.Text += btn.Text;
 
                     // Changer l'état du bouton à SELECTED
-                    btn.BackColor = Color.BurlyWood;
+                    if(btn.BackColor == Color.Red)
+                    {
+                        btn.BackColor = Color.OrangeRed;
+                    }
+                    else
+                    {
+                        btn.BackColor = Color.BurlyWood;
+                    }
+                    
                     btn.Tag = Constant.SELECTED;
+
+                    // Estimer le score du mot courant
+                    ScoreOfCurrentWord();
 
                     // Maintenant le btnArrivee sera le btnDepart
                     button1_MouseDown(btn, evnt);
@@ -245,6 +284,9 @@ namespace BookWorm
 
                     // on rajoute les points de chaque lettre au score total de la partie
                     scoreTotalPartie += valeurLettres[letter];
+
+                    // Enregistrer le score de la partie dans une variable globale
+                    Util.scoreGlobal = scoreTotalPartie;
                 }
 
                 // vérification si après le dernier mot trouvé, le score dépasse le prochain barème de niveau
@@ -259,14 +301,39 @@ namespace BookWorm
                     // réduction du temps entre deux descente de case en feu dans une limite de 1 seconde au minimum
                     if (chrono.Interval > 1000)
                     {
-                        chrono.Interval -= 500;
+                        chrono.Interval -= 250;
                     }
                     
                 }
 
-                //MessageBox.Show("Ok", "OK");
                 scoreLabel.Text = scoreTotalPartie.ToString();
                 ReplaceCharacters();
+            }
+        }
+
+        private void ScoreOfCurrentWord()
+        {
+            string mot = currentWordLabel.Text.ToLower();
+            var isMatch = Array.Exists(wordList, s => s.Equals(mot));
+            int score = 0;
+
+            if (isMatch)
+            {
+                // conversion du mot validé en majuscules pour pouvoir être comparé au dictionnaire
+                string motMajuscules = mot.ToUpper();
+
+                // on recherche la valeur de chaque lettres du mot trouvé
+                foreach (char letter in motMajuscules)
+                {
+                    // on rajoute les points de chaque lettre au score total de la partie
+                    score += valeurLettres[letter];
+                }
+
+                scoreOfWordLabel.Text = "+" + score.ToString();
+            }
+            else
+            {
+                scoreOfWordLabel.Text = "";
             }
         }
 
@@ -392,6 +459,16 @@ namespace BookWorm
                     chrono.Enabled = false;
 
                     MessageBox.Show("Perdu !");
+                    Util.SaveHighScore();
+                    var reponse = MessageBox.Show("Recommencer ?", "Que veux-tu ?", MessageBoxButtons.YesNo);
+                    if(reponse == DialogResult.Yes)
+                    {
+                        ResetJeu();
+                    }
+                    else
+                    {
+                        this.Close();
+                    }
                 }
                 
             }
