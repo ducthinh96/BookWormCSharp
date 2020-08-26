@@ -1,5 +1,5 @@
 lucas,125
 duc,100
 christophe,25
-dat,11
-alex,7
+tam,22
+tam,17

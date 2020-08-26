@@ -21,7 +21,7 @@ namespace BookWorm
         // Init du chrono pour faire descendre les cases en feu toutes les 6000 milliscondes
         Timer chrono = new Timer
         {
-            Interval = 6000
+            Interval = 10000
         };
         int index_btn_depart;
         int posX_btnDepart;
@@ -90,6 +90,27 @@ namespace BookWorm
 
             // Brancher l'événement Tick du chrono à la méthode OnTickEvent
             chrono.Tick += OnTickEvent;
+        }
+
+        private void ResetJeu()
+        {
+            // Init le score dans la variable globale
+            Util.scoreGlobal = -1;
+
+            // Init le mot courant
+            currentWordLabel.Text = "";
+
+            // Init le score du mot courant
+            scoreOfWordLabel.Text = "";
+
+            // Init le mot bonus :
+            var motBonusListe = Util.ReadTextFile(Constant.MOT_BONUS_FILE_PATH);
+            Random random = new Random();
+            motBonus = motBonusListe[random.Next(0, motBonusListe.Length)];
+            bonusWordLabel.Text = motBonus;
+
+            // Initialisation du label qui contient le niveau du joueur
+            levelLabel.Text = "Niveau " + niveau.ToString();
         }
 
         private string GenererNouvelleLettre()
@@ -193,7 +214,10 @@ namespace BookWorm
             foreach (Button btn in plateauLettres.Controls.OfType<Button>())
             {
                 // Réinit l'état des boutons
-                btn.BackColor = SystemColors.ButtonFace; // Default color
+                if (btn.BackColor != Color.Red)
+                {
+                    btn.BackColor = SystemColors.ButtonFace; // Default color
+                }
                 btn.Tag = Constant.NOT_SELECTED; // Etat = non sélectionné
             }
         }
@@ -219,7 +243,15 @@ namespace BookWorm
                     currentWordLabel.Text += btn.Text;
 
                     // Changer l'état du bouton à SELECTED
-                    btn.BackColor = Color.BurlyWood;
+                    if(btn.BackColor == Color.Red)
+                    {
+                        btn.BackColor = Color.OrangeRed;
+                    }
+                    else
+                    {
+                        btn.BackColor = Color.BurlyWood;
+                    }
+                    
                     btn.Tag = Constant.SELECTED;
 
                     // Estimer le score du mot courant
@@ -269,7 +301,7 @@ namespace BookWorm
                     // réduction du temps entre deux descente de case en feu dans une limite de 1 seconde au minimum
                     if (chrono.Interval > 1000)
                     {
-                        chrono.Interval -= 500;
+                        chrono.Interval -= 250;
                     }
                     
                 }
@@ -427,6 +459,16 @@ namespace BookWorm
                     chrono.Enabled = false;
 
                     MessageBox.Show("Perdu !");
+                    Util.SaveHighScore();
+                    var reponse = MessageBox.Show("Recommencer ?", "Que veux-tu ?", MessageBoxButtons.YesNo);
+                    if(reponse == DialogResult.Yes)
+                    {
+                        ResetJeu();
+                    }
+                    else
+                    {
+                        this.Close();
+                    }
                 }
                 
             }
