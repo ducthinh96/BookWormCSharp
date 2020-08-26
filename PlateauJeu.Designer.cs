@@ -208,9 +208,8 @@
             this.levelLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.levelLabel.Location = new System.Drawing.Point(11, 5);
             this.levelLabel.Name = "levelLabel";
-            this.levelLabel.Size = new System.Drawing.Size(166, 48);
+            this.levelLabel.Size = new System.Drawing.Size(0, 48);
             this.levelLabel.TabIndex = 0;
-            this.levelLabel.Text = "Niveau 1";
             this.levelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
