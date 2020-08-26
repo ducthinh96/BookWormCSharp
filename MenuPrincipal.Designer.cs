@@ -44,7 +44,7 @@
             this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Bookworm", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.SandyBrown;
             this.button1.Location = new System.Drawing.Point(513, 56);
             this.button1.Name = "button1";
@@ -53,6 +53,8 @@
             this.button1.Text = "LANCER PARTIE";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.buttonLancerPartie_Click);
+            this.button1.MouseEnter += new System.EventHandler(this.ButtonMouseEnter);
+            this.button1.MouseLeave += new System.EventHandler(this.ButtonMouseLeave);
             // 
             // button2
             // 
@@ -63,14 +65,17 @@
             this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Bookworm", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.SeaShell;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.SandyBrown;
             this.button2.Location = new System.Drawing.Point(447, 211);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(579, 149);
             this.button2.TabIndex = 1;
             this.button2.Text = "SCORE BOARD";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.buttonScoreBoard);
+            this.button2.MouseEnter += new System.EventHandler(this.ButtonMouseEnter);
+            this.button2.MouseLeave += new System.EventHandler(this.ButtonMouseLeave);
             // 
             // button3
             // 
@@ -81,8 +86,8 @@
             this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Bookworm", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.NavajoWhite;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.SandyBrown;
             this.button3.Location = new System.Drawing.Point(464, 358);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(562, 184);
@@ -90,6 +95,8 @@
             this.button3.Text = "OPTIONS";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.buttonOptions);
+            this.button3.MouseEnter += new System.EventHandler(this.ButtonMouseEnter);
+            this.button3.MouseLeave += new System.EventHandler(this.ButtonMouseLeave);
             // 
             // button4
             // 
@@ -100,7 +107,7 @@
             this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Bookworm", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.SandyBrown;
             this.button4.Location = new System.Drawing.Point(429, 540);
             this.button4.Name = "button4";
@@ -109,6 +116,8 @@
             this.button4.Text = "QUITTER";
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.Quitter_Click);
+            this.button4.MouseEnter += new System.EventHandler(this.ButtonMouseEnter);
+            this.button4.MouseLeave += new System.EventHandler(this.ButtonMouseLeave);
             // 
             // MenuPrincipal
             // 

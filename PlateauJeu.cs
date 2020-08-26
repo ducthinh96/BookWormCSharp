@@ -52,6 +52,9 @@ namespace BookWorm
             // Init le mot courant
             currentWordLabel.Text = "";
 
+            // Init le score du mot courant
+            scoreOfWordLabel.Text = "";
+
             // Init le mot bonus :
             var motBonusListe = Util.ReadTextFile(Constant.MOT_BONUS_FILE_PATH);
             Random random = new Random();
@@ -186,6 +189,7 @@ namespace BookWorm
 
             // Réinitialiser le plateau après que le souris est relâché
             currentWordLabel.Text = ""; // Réinit le mot courant
+            scoreOfWordLabel.Text = ""; // Réinit le score du mot courant
             foreach (Button btn in plateauLettres.Controls.OfType<Button>())
             {
                 // Réinit l'état des boutons
@@ -218,6 +222,9 @@ namespace BookWorm
                     btn.BackColor = Color.BurlyWood;
                     btn.Tag = Constant.SELECTED;
 
+                    // Estimer le score du mot courant
+                    ScoreOfCurrentWord();
+
                     // Maintenant le btnArrivee sera le btnDepart
                     button1_MouseDown(btn, evnt);
                 }
@@ -245,6 +252,9 @@ namespace BookWorm
 
                     // on rajoute les points de chaque lettre au score total de la partie
                     scoreTotalPartie += valeurLettres[letter];
+
+                    // Enregistrer le score de la partie dans une variable globale
+                    Util.scoreGlobal = scoreTotalPartie;
                 }
 
                 // vérification si après le dernier mot trouvé, le score dépasse le prochain barème de niveau
@@ -264,9 +274,34 @@ namespace BookWorm
                     
                 }
 
-                //MessageBox.Show("Ok", "OK");
                 scoreLabel.Text = scoreTotalPartie.ToString();
                 ReplaceCharacters();
+            }
+        }
+
+        private void ScoreOfCurrentWord()
+        {
+            string mot = currentWordLabel.Text.ToLower();
+            var isMatch = Array.Exists(wordList, s => s.Equals(mot));
+            int score = 0;
+
+            if (isMatch)
+            {
+                // conversion du mot validé en majuscules pour pouvoir être comparé au dictionnaire
+                string motMajuscules = mot.ToUpper();
+
+                // on recherche la valeur de chaque lettres du mot trouvé
+                foreach (char letter in motMajuscules)
+                {
+                    // on rajoute les points de chaque lettre au score total de la partie
+                    score += valeurLettres[letter];
+                }
+
+                scoreOfWordLabel.Text = "+" + score.ToString();
+            }
+            else
+            {
+                scoreOfWordLabel.Text = "";
             }
         }
 

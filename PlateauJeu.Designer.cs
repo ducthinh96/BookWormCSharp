@@ -36,7 +36,6 @@
             this.mixWordBoardButton = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.currentWordLabel = new System.Windows.Forms.Label();
-            this.submitButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.levelLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -94,22 +93,25 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.scoreOfWordPanel = new System.Windows.Forms.Panel();
+            this.scoreOfWordLabel = new System.Windows.Forms.Label();
             this.sideBar.SuspendLayout();
             this.bonusWordPanel.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.plateauLettres.SuspendLayout();
+            this.scoreOfWordPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // sideBar
             // 
             this.sideBar.BackColor = System.Drawing.Color.Tan;
+            this.sideBar.Controls.Add(this.scoreOfWordPanel);
             this.sideBar.Controls.Add(this.button53);
             this.sideBar.Controls.Add(this.bonusWordPanel);
             this.sideBar.Controls.Add(this.mixWordBoardButton);
             this.sideBar.Controls.Add(this.panel3);
-            this.sideBar.Controls.Add(this.submitButton);
             this.sideBar.Controls.Add(this.panel2);
             this.sideBar.Controls.Add(this.panel1);
             this.sideBar.Location = new System.Drawing.Point(-3, -4);
@@ -165,7 +167,7 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.panel3.Controls.Add(this.currentWordLabel);
-            this.panel3.Location = new System.Drawing.Point(4, 199);
+            this.panel3.Location = new System.Drawing.Point(4, 138);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(343, 58);
             this.panel3.TabIndex = 3;
@@ -181,16 +183,6 @@
             this.currentWordLabel.TabIndex = 0;
             this.currentWordLabel.Text = "SANS";
             this.currentWordLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // submitButton
-            // 
-            this.submitButton.Font = new System.Drawing.Font("Segoe Script", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.submitButton.Location = new System.Drawing.Point(3, 137);
-            this.submitButton.Name = "submitButton";
-            this.submitButton.Size = new System.Drawing.Size(343, 58);
-            this.submitButton.TabIndex = 3;
-            this.submitButton.Text = "Soumettre";
-            this.submitButton.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
@@ -768,6 +760,27 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // scoreOfWordPanel
+            // 
+            this.scoreOfWordPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.scoreOfWordPanel.Controls.Add(this.scoreOfWordLabel);
+            this.scoreOfWordPanel.Location = new System.Drawing.Point(4, 202);
+            this.scoreOfWordPanel.Name = "scoreOfWordPanel";
+            this.scoreOfWordPanel.Size = new System.Drawing.Size(343, 58);
+            this.scoreOfWordPanel.TabIndex = 4;
+            // 
+            // scoreOfWordLabel
+            // 
+            this.scoreOfWordLabel.AutoSize = true;
+            this.scoreOfWordLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scoreOfWordLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.scoreOfWordLabel.Location = new System.Drawing.Point(98, 6);
+            this.scoreOfWordLabel.Name = "scoreOfWordLabel";
+            this.scoreOfWordLabel.Size = new System.Drawing.Size(44, 46);
+            this.scoreOfWordLabel.TabIndex = 0;
+            this.scoreOfWordLabel.Text = "+";
+            this.scoreOfWordLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // PlateauJeu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -792,6 +805,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.plateauLettres.ResumeLayout(false);
+            this.scoreOfWordPanel.ResumeLayout(false);
+            this.scoreOfWordPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -854,7 +869,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label scoreLabel;
-        private System.Windows.Forms.Button submitButton;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label levelLabel;
         private System.Windows.Forms.Panel panel3;
@@ -863,5 +877,7 @@
         private System.Windows.Forms.Button button53;
         private System.Windows.Forms.Panel bonusWordPanel;
         private System.Windows.Forms.Label bonusWordLabel;
+        private System.Windows.Forms.Panel scoreOfWordPanel;
+        private System.Windows.Forms.Label scoreOfWordLabel;
     }
 }
