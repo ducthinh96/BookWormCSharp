@@ -45,5 +45,13 @@ namespace BookWorm
             nouveauPlateauJeu.Show();
             this.Hide();
         }
+
+        void tb_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ConfirmPlayerNameButtonClick(sender, e);
+            }
+        }
     }
 }
