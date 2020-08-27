@@ -47,10 +47,10 @@
             // instructionLabel
             // 
             this.instructionLabel.AutoSize = true;
-            this.instructionLabel.Font = new System.Drawing.Font("Bookworm", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.instructionLabel.Location = new System.Drawing.Point(425, 154);
+            this.instructionLabel.Font = new System.Drawing.Font("Showcard Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.instructionLabel.Location = new System.Drawing.Point(392, 161);
             this.instructionLabel.Name = "instructionLabel";
-            this.instructionLabel.Size = new System.Drawing.Size(206, 34);
+            this.instructionLabel.Size = new System.Drawing.Size(270, 33);
             this.instructionLabel.TabIndex = 1;
             this.instructionLabel.Text = "Entrez votre nom";
             // 
@@ -61,7 +61,7 @@
             this.confirmPlayerNameButton.FlatAppearance.BorderSize = 0;
             this.confirmPlayerNameButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.confirmPlayerNameButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.confirmPlayerNameButton.Font = new System.Drawing.Font("Bookworm", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.confirmPlayerNameButton.Font = new System.Drawing.Font("Showcard Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.confirmPlayerNameButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.confirmPlayerNameButton.Location = new System.Drawing.Point(425, 286);
             this.confirmPlayerNameButton.Name = "confirmPlayerNameButton";
