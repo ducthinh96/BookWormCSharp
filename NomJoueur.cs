@@ -19,16 +19,7 @@ namespace BookWorm
 
         private void ConfirmPlayerNameButtonClick(object sender, EventArgs e)
         {
-            if (playerNameTextBox.Text == "")
-            {
-                MessageBox.Show("Veuillez saisir votre nom", "Impossible de continuer", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                Util.nomJoueur = playerNameTextBox.Text;
-                Util.PlayButtonClickSound();
-                LancerPlateauJeu();
-            }
+            verifyName();
         }
 
         private void LancerPlateauJeu()
@@ -45,5 +36,29 @@ namespace BookWorm
             nouveauPlateauJeu.Show();
             this.Hide();
         }
+
+        private void tkEnterDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                verifyName();
+            }
+                
+        }
+
+        private void verifyName()
+        {
+            if (playerNameTextBox.Text == "")
+            {
+                MessageBox.Show("Veuillez saisir votre nom", "Impossible de continuer", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                Util.nomJoueur = playerNameTextBox.Text;
+                Util.PlayButtonClickSound();
+                LancerPlateauJeu();
+            }
+        }
+
     }
 }

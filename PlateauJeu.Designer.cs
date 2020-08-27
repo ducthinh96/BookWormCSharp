@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlateauJeu));
             this.sideBar = new System.Windows.Forms.Panel();
+            this.scoreOfWordPanel = new System.Windows.Forms.Panel();
+            this.scoreOfWordLabel = new System.Windows.Forms.Label();
             this.button53 = new System.Windows.Forms.Button();
             this.bonusWordPanel = new System.Windows.Forms.Panel();
             this.bonusWordLabel = new System.Windows.Forms.Label();
@@ -93,15 +95,13 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.scoreOfWordPanel = new System.Windows.Forms.Panel();
-            this.scoreOfWordLabel = new System.Windows.Forms.Label();
             this.sideBar.SuspendLayout();
+            this.scoreOfWordPanel.SuspendLayout();
             this.bonusWordPanel.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.plateauLettres.SuspendLayout();
-            this.scoreOfWordPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // sideBar
@@ -118,6 +118,27 @@
             this.sideBar.Name = "sideBar";
             this.sideBar.Size = new System.Drawing.Size(347, 767);
             this.sideBar.TabIndex = 0;
+            // 
+            // scoreOfWordPanel
+            // 
+            this.scoreOfWordPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.scoreOfWordPanel.Controls.Add(this.scoreOfWordLabel);
+            this.scoreOfWordPanel.Location = new System.Drawing.Point(4, 202);
+            this.scoreOfWordPanel.Name = "scoreOfWordPanel";
+            this.scoreOfWordPanel.Size = new System.Drawing.Size(343, 58);
+            this.scoreOfWordPanel.TabIndex = 4;
+            // 
+            // scoreOfWordLabel
+            // 
+            this.scoreOfWordLabel.AutoSize = true;
+            this.scoreOfWordLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scoreOfWordLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.scoreOfWordLabel.Location = new System.Drawing.Point(98, 6);
+            this.scoreOfWordLabel.Name = "scoreOfWordLabel";
+            this.scoreOfWordLabel.Size = new System.Drawing.Size(44, 46);
+            this.scoreOfWordLabel.TabIndex = 0;
+            this.scoreOfWordLabel.Text = "+";
+            this.scoreOfWordLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // button53
             // 
@@ -760,27 +781,6 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // scoreOfWordPanel
-            // 
-            this.scoreOfWordPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.scoreOfWordPanel.Controls.Add(this.scoreOfWordLabel);
-            this.scoreOfWordPanel.Location = new System.Drawing.Point(4, 202);
-            this.scoreOfWordPanel.Name = "scoreOfWordPanel";
-            this.scoreOfWordPanel.Size = new System.Drawing.Size(343, 58);
-            this.scoreOfWordPanel.TabIndex = 4;
-            // 
-            // scoreOfWordLabel
-            // 
-            this.scoreOfWordLabel.AutoSize = true;
-            this.scoreOfWordLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scoreOfWordLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.scoreOfWordLabel.Location = new System.Drawing.Point(98, 6);
-            this.scoreOfWordLabel.Name = "scoreOfWordLabel";
-            this.scoreOfWordLabel.Size = new System.Drawing.Size(44, 46);
-            this.scoreOfWordLabel.TabIndex = 0;
-            this.scoreOfWordLabel.Text = "+";
-            this.scoreOfWordLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // PlateauJeu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -796,6 +796,8 @@
             this.Text = "BookWorm";
             this.Load += new System.EventHandler(this.PlateauJeu_Load);
             this.sideBar.ResumeLayout(false);
+            this.scoreOfWordPanel.ResumeLayout(false);
+            this.scoreOfWordPanel.PerformLayout();
             this.bonusWordPanel.ResumeLayout(false);
             this.bonusWordPanel.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -805,8 +807,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.plateauLettres.ResumeLayout(false);
-            this.scoreOfWordPanel.ResumeLayout(false);
-            this.scoreOfWordPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
