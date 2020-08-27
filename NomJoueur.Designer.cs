@@ -42,7 +42,7 @@
             this.playerNameTextBox.Name = "playerNameTextBox";
             this.playerNameTextBox.Size = new System.Drawing.Size(309, 49);
             this.playerNameTextBox.TabIndex = 0;
-            this.playerNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tb_KeyDown);
+            this.playerNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tkEnterDown);
             // 
             // instructionLabel
             // 
