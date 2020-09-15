@@ -111,6 +111,16 @@ namespace BookWorm
 
             // Initialisation du label qui contient le niveau du joueur
             levelLabel.Text = "Niveau " + niveau.ToString();
+
+            // Vider la liste des cases en feu
+            caseLettreEnFeuListe.Clear();
+
+            // Initialiser la couleur des cases
+            foreach (Button btn in plateauLettres.Controls.OfType<Button>())
+            {
+                btn.BackColor = SystemColors.ButtonFace; // Default color
+                btn.Tag = Constant.NOT_SELECTED; // Etat = non sélectionné
+            }
         }
 
         private string GenererNouvelleLettre()
@@ -191,7 +201,14 @@ namespace BookWorm
             if (btn.Tag.ToString() == Constant.NOT_SELECTED)
             {
                 currentWordLabel.Text += btn.Text;
-                btn.BackColor = Color.BurlyWood;
+                if(btn.BackColor == Color.Red)
+                {
+                    btn.BackColor = Color.OrangeRed; // Couleur quand une case en feu est sélectionnée
+                }
+                else
+                {
+                    btn.BackColor = Color.BurlyWood; // Couleur quand une case normale est sélectionnée
+                }
                 btn.Tag = Constant.SELECTED;
                 evnt = e;
 
@@ -214,9 +231,13 @@ namespace BookWorm
             foreach (Button btn in plateauLettres.Controls.OfType<Button>())
             {
                 // Réinit l'état des boutons
-                if (btn.BackColor != Color.Red)
+                if (btn.BackColor != Color.Red && btn.BackColor != Color.OrangeRed)
                 {
                     btn.BackColor = SystemColors.ButtonFace; // Default color
+                }
+                else if (btn.BackColor == Color.OrangeRed)
+                {
+                    btn.BackColor = Color.Red; // Reinit la couleur de la case en feu
                 }
                 btn.Tag = Constant.NOT_SELECTED; // Etat = non sélectionné
             }
@@ -367,7 +388,14 @@ namespace BookWorm
                     bool topRowReached = false;
                     int i = plateauLettres.Controls.IndexOf(btn);
 
-                    while(!topRowReached)
+                    // Si la case est une case en feu
+                    // Il faut retirer l'effet "feu" une fois que le joueur arrive à matcher la lettre
+                    if (caseLettreEnFeuListe.Contains(i))
+                    {
+                        caseLettreEnFeuListe.Remove(i);
+                    }
+
+                    while (!topRowReached)
                     {
                         if(topRowButtonsIndexListe.Contains(i))
                         {
@@ -379,6 +407,22 @@ namespace BookWorm
                         else
                         {
                             plateauLettres.Controls[i].Text = plateauLettres.Controls[i + 1].Text;
+                        }
+
+                        // Si la case est une case en feu
+                        // Il faut faire descendre aussi l'effet "feu"
+                        if (caseLettreEnFeuListe.Contains(i))
+                        {
+                            plateauLettres.Controls[i-1].BackColor = plateauLettres.Controls[i].BackColor;
+                            plateauLettres.Controls[i].BackColor = SystemColors.ButtonFace;
+                            int indexDansListeCaseEnFeu = caseLettreEnFeuListe.IndexOf(i);
+                            caseLettreEnFeuListe[indexDansListeCaseEnFeu] -= 1;
+                            if(bottomRowButtonsIndexListe.Contains(caseLettreEnFeuListe[indexDansListeCaseEnFeu]))
+                            {
+                                // Si la nouvelle case en feu est dans le rang au plus bas
+                                // Game over
+                                GameOver();
+                            }
                         }
 
                         i++;
@@ -455,20 +499,7 @@ namespace BookWorm
                 // Vérification si une case en feu qui descend atteint le bas du tableau (défaite)
                 if (bottomRowButtonsIndexListe.Contains(caseLettreEnFeuListe[i]))
                 {
-                    // désactivation du chronomètre car fin de la partie
-                    chrono.Enabled = false;
-
-                    MessageBox.Show("Perdu !");
-                    Util.SaveHighScore();
-                    var reponse = MessageBox.Show("Recommencer ?", "Que veux-tu ?", MessageBoxButtons.YesNo);
-                    if(reponse == DialogResult.Yes)
-                    {
-                        ResetJeu();
-                    }
-                    else
-                    {
-                        this.Close();
-                    }
+                    GameOver();
                 }
                 
             }
@@ -483,6 +514,24 @@ namespace BookWorm
             
 
             this.Close();
+        }
+
+        private void GameOver()
+        {
+            // désactivation du chronomètre car fin de la partie
+            chrono.Enabled = false;
+
+            MessageBox.Show("Perdu !");
+            Util.SaveHighScore();
+            var reponse = MessageBox.Show("Recommencer ?", "Que veux-tu ?", MessageBoxButtons.YesNo);
+            if (reponse == DialogResult.Yes)
+            {
+                ResetJeu();
+            }
+            else
+            {
+                this.Close();
+            }
         }
     }
 }
