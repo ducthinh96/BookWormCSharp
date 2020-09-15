@@ -96,6 +96,9 @@ namespace BookWorm
                 File.WriteAllText(Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\" + Constant.HIGH_SCORES_LIST_FILE_PATH, highScoresData);
 
                 MessageBox.Show("Ouaissss !!! T'es le n° " + (joueurs.IndexOf(newTopPlayer) + 1).ToString() + " parmi les meilleurs !!!", "Nouveau score élevé :O");
+
+                Util.scoreGlobal = 0;
+
             }
         }
     }
