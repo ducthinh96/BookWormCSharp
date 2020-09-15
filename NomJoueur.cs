@@ -48,7 +48,7 @@ namespace BookWorm
 
         private void verifyName()
         {
-            if (playerNameTextBox.Text == "")
+            if (string.IsNullOrWhiteSpace(playerNameTextBox.Text))
             {
                 MessageBox.Show("Veuillez saisir votre nom", "Impossible de continuer", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }

@@ -393,6 +393,7 @@ namespace BookWorm
                     if (caseLettreEnFeuListe.Contains(i))
                     {
                         caseLettreEnFeuListe.Remove(i);
+                        btn.BackColor = SystemColors.ButtonFace; // Réinitialisé la couleur du bouton
                     }
 
                     while (!topRowReached)
